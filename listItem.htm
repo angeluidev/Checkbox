@@ -1,0 +1,103 @@
+
+<!-- saved from url=(0134)https://polymall.polytechnic.edu.sg/bbcswebdav/pid-541118-dt-content-rid-13129194_1/courses/18S1-C-SP-098ST4012-10500706/listItem.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+	table,td {
+		border: 1px solid black;
+	}
+	
+	.tr_header td{
+		background-color: #FFF000;
+		font-weight: bold;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+$(function() {
+
+	var button = $("#btn_delete").attr("disabled", true);
+
+	// SELECT ALL CHECKBOXES
+	$("#check_selectAll").change(function(){  
+		var status = this.checked;
+		if (this.checked == true) {
+				button.removeAttr("disabled");
+			} else {
+				button.attr("disabled", "disabled");
+			} 
+		$('.checkbox').each(function(){ 
+			this.checked = status;
+		});
+	});
+
+	// uncheck "ALL", if one of the listed checkbox item is unchecked
+	$('.checkbox').change(function(){ 
+		if(this.checked == false){
+			$("#check_selectAll")[0].checked = false;
+		}
+		
+	// check "ALL" if all checkbox items are checked
+		if ($('.checkbox:checked').length == $('.checkbox').length ){ 
+			$("#check_selectAll")[0].checked = true;
+		}
+	});	
+
+	// ABLE / DISABLE BUTTON
+	$('.checkbox').click(function() {
+		button.prop('disabled',$('input.checkbox:checked').length == 0);
+	});
+
+});
+
+
+</script>
+
+</head>
+<body>
+	<table>
+		<tbody><tr class="tr_header">
+			<td>
+				<input type="checkbox" id="check_selectAll">
+			</td>
+			<td>
+				ALL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox" id="check_del1">
+			</td>
+			<td>
+				TV
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox" id="check_del2">
+			</td>
+			<td>
+				Aircon
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox" id="check_del3">
+			</td>
+			<td>
+				Kitchen
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" class="checkbox" id="check_del4">
+			</td>
+			<td>
+				Lighting
+			</td>
+		</tr>
+	</tbody></table>
+	<br>
+	<button id="btn_delete">Delete</button>
+
+</body></html>
